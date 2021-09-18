@@ -28,8 +28,13 @@ public class FishingSpawner : MonoBehaviour
 
         if(timerSpawn >= 0.5f)
         {
-            int randIndex = Random.Range(0, fishes.Length);
-            Instantiate(fishes[randIndex], RandomPosition(), Quaternion.identity);
+            int randIndex = Random.Range(0, 15);
+            //Special fish spawns with 1/15 of propability
+            if(randIndex != 0)
+                Instantiate(fishes[0], RandomPosition(), Quaternion.identity); //Normal fish
+            else
+                Instantiate(fishes[1], RandomPosition(), Quaternion.identity); //Special fish
+
             timerSpawn = 0f;
         }
     }
