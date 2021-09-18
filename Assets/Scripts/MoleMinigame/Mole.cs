@@ -43,7 +43,6 @@ public class Mole : MonoBehaviour
         yield return new WaitForSecondsRealtime(_time);
         WhackamoleControler.Instance.MolesOutside--;
         goOut = false;
-
         //print("Bajar");
     }
 

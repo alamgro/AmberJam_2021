@@ -6,24 +6,26 @@ using UnityEngine;
 [SelectionBase]
 public class FishingRod : MonoBehaviour
 {
+    [SerializeField] private float speed; //Fishin rod speed
     [SerializeField] private Transform positionBait; //reference to the bait Transform
     [SerializeField] private Transform positionBaitLimit; //The limit of the bait in Y position
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Image forceIndicatorUI;
     [SerializeField] private float idleTime; //The time that it takes to return the bait to the rod
     [SerializeField] private float maxTimePressing; //The maximum time that it takes to fill the force indicator
+    private Rigidbody2D rb;
     private Collider2D baitCollider;
     private Vector3 baitTarget;
     private float forceTimer = 0f;
     private float idleTimer = 0f;
     private bool isThrowing = false;
     private bool resetBait = false;
-    private Camera cam;
+    private bool increaseIndicator = true; //Defines if the force indicator increases or decreases
 
     void Start()
     {
-        cam = Camera.main;
         baitCollider = positionBait.GetComponent<Collider2D>();
+        rb = GetComponent<Rigidbody2D>();
 
         positionBait.position = lineRenderer.transform.position; //Set bait to its initial position
         lineRenderer.positionCount = 2;
@@ -36,23 +38,36 @@ public class FishingRod : MonoBehaviour
 
         if (!isThrowing)
         {
-            if (Input.GetMouseButton(0))
+            rb.velocity = Vector2.right * speed * Input.GetAxisRaw("Horizontal");
+
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                forceTimer += Time.deltaTime;
-                if (forceTimer >= maxTimePressing) forceTimer = 0f;
+                increaseIndicator = true;
+            }
+            else if (Input.GetKey(KeyCode.Space))
+            {
+                if (increaseIndicator)
+                {
+                    forceTimer += Time.deltaTime;
+                    if (forceTimer >= maxTimePressing) 
+                        increaseIndicator = false;
+                }
+                else
+                {
+                    forceTimer -= Time.deltaTime;
+                    if (forceTimer <= 0f)
+                        increaseIndicator = true;
+                }
 
                 forceIndicatorUI.fillAmount = forceTimer / maxTimePressing; //Update Force Indicator on UI
-
-                transform.position = new Vector2(cam.ScreenToWorldPoint(Input.mousePosition).x, transform.position.y);
-                //transform.position = Vector2.MoveTowards(transform.position, new Vector2(cam.ScreenToWorldPoint(Input.mousePosition).x, transform.position.y), 5f * Time.deltaTime);
-
-                positionBait.position = lineRenderer.transform.position; //Reset bait to its initial position
-
             }
-            else if (Input.GetMouseButtonUp(0))
+            else if (Input.GetKeyUp(KeyCode.Space))
             {
+                rb.velocity = Vector2.zero; //Stop fishing rod
+
                 isThrowing = true;
                 baitCollider.enabled = false;
+                increaseIndicator = false;
 
                 baitTarget = GetBaitTrajectory(forceTimer / maxTimePressing);
 
@@ -65,17 +80,17 @@ public class FishingRod : MonoBehaviour
             if (!resetBait && positionBait.position != baitTarget)
             {
                 //Move bait to target
-                positionBait.position = Vector2.MoveTowards(positionBait.position, baitTarget, 7.0f * Time.deltaTime);
+                positionBait.position = Vector2.MoveTowards(positionBait.position, baitTarget, 15.0f * Time.deltaTime);
 
                 resetBait = positionBait.position == baitTarget;
             }
             else if(positionBait.position != lineRenderer.transform.position)
             {
                 //wait to start returning
-                if(idleTimer >= 0.5f)
+                if(idleTimer >= idleTime)
                 {
                     //Return bait to the fishing rod
-                    positionBait.position = Vector2.MoveTowards(positionBait.position, lineRenderer.transform.position, 7.0f * Time.deltaTime);
+                    positionBait.position = Vector2.MoveTowards(positionBait.position, lineRenderer.transform.position, 15.0f * Time.deltaTime);
                     baitCollider.enabled = true;
                 }
                 else
