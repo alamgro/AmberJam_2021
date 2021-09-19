@@ -7,11 +7,19 @@ public class FishingItem : MonoBehaviour
     [SerializeField] private float speed; 
     [SerializeField] private int expValue; //Experience given when caught
     private Vector3 direction; //Movement direction
+    private SpriteRenderer sprite;
 
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
+
         //Calculate direction based on the current position
         direction = -(transform.position * Vector2.right).normalized;
+        Debug.Log(direction, gameObject);
+        if(direction.x > 0f)
+            sprite.flipX = sprite.flipY = true;
+
+        direction.z = 1f;
     }
 
     void Update()
@@ -20,7 +28,7 @@ public class FishingItem : MonoBehaviour
             return;
 
         //Move
-        transform.Translate(direction * speed * Time.deltaTime);
+        transform.Translate(direction * Vector2.right * speed * Time.deltaTime, Space.World);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -31,9 +31,9 @@ public class FishingSpawner : MonoBehaviour
             int randIndex = Random.Range(0, 15);
             //Special fish spawns with 1/15 of propability
             if(randIndex != 0)
-                Instantiate(fishes[0], RandomPosition(), Quaternion.identity); //Normal fish
+                Instantiate(fishes[0], RandomPosition(), fishes[0].transform.rotation); //Normal fish
             else
-                Instantiate(fishes[1], RandomPosition(), Quaternion.identity); //Special fish
+                Instantiate(fishes[1], RandomPosition(), fishes[1].transform.rotation); //Special fish
 
             timerSpawn = 0f;
         }
