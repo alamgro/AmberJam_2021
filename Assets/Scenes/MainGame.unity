@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.4, g: 1, b: 0, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -701,8 +701,8 @@ Canvas:
   m_GameObject: {fileID: 443544489}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1458901791}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2603,6 +2603,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 61e42768ec517b648966caccf12240d7, type: 3}
     - target: {fileID: 4022030603130283471, guid: 63ccbb907b8f5ef46bb047ffa4f1edcd, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022030603130283471, guid: 63ccbb907b8f5ef46bb047ffa4f1edcd, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022030603130283471, guid: 63ccbb907b8f5ef46bb047ffa4f1edcd, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022030603130283471, guid: 63ccbb907b8f5ef46bb047ffa4f1edcd, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022030603130283471, guid: 63ccbb907b8f5ef46bb047ffa4f1edcd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 776001506}
@@ -2952,6 +2968,22 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 61e42768ec517b648966caccf12240d7, type: 3}
+    - target: {fileID: 4022030603130283471, guid: 63ccbb907b8f5ef46bb047ffa4f1edcd, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022030603130283471, guid: 63ccbb907b8f5ef46bb047ffa4f1edcd, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022030603130283471, guid: 63ccbb907b8f5ef46bb047ffa4f1edcd, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022030603130283471, guid: 63ccbb907b8f5ef46bb047ffa4f1edcd, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.39830518
+      objectReference: {fileID: 0}
     - target: {fileID: 4022030603130283471, guid: 63ccbb907b8f5ef46bb047ffa4f1edcd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
