@@ -13,10 +13,21 @@ public class GameManager : MonoBehaviour
 
     //Experience gathered in each level
     public int[] experience = new int[3];
+    //The experience required for each phase
+    public int[] phasesExperience = {0, 300, 1500, 8000 };
 
     void Awake()
     {
         LoadData();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.LogWarning("Playerprefs deleted!", gameObject);
+            PlayerPrefs.DeleteAll();
+        }
     }
 
     public bool IsGameOver { get; set; }
