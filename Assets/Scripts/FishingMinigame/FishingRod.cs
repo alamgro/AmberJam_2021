@@ -66,6 +66,8 @@ public class FishingRod : MonoBehaviour
             }
             else if (Input.GetKeyUp(KeyCode.Space))
             {
+                MoveCrosshair(0f);
+
                 rb.velocity = Vector2.zero; //Stop fishing rod
 
                 isThrowing = true;
