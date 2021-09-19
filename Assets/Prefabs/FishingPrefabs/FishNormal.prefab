@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8818047554414733093}
-  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0.3420201, w: 0.9396927}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 40}
 --- !u!212 &6162819818948244259
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -96,8 +96,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7014edbdc3012004783adb125e56dbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
   expValue: 5
+  minSpeed: 2.75
+  maxSpeed: 3.5
+  rotationSpeed: 35
+  particlesExp: {fileID: 6978539247309684205, guid: e70ee827c0bda8a45ba7666eb9fe426c, type: 3}
 --- !u!58 &2145003776650888157
 CircleCollider2D:
   m_ObjectHideFlags: 0

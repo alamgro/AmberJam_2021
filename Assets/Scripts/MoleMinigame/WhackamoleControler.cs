@@ -64,8 +64,11 @@ public class WhackamoleControler : MonoBehaviour
     void CheckMolesTimeOutside()
     {
         //Reduce the time that moles stay outside every 15 seconds
-        if (timeOfGameplay % 15 == 0 && timeOutside >= 0.5f)
+        if (timeOfGameplay % 15 == 0)
             timeOutside -= 0.45f;
+
+        if (timeOutside < 0.8f)
+            timeOutside = 0.8f;
     }
 
     public void ChooseRandomMoles()

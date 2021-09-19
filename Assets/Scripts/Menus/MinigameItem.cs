@@ -13,6 +13,7 @@ public class MinigameItem : MonoBehaviour
     [SerializeField] private string levelDescription;
     [SerializeField] private int index; //Must be the same as in the GameManager 
     [SerializeField] private int phaseLevel; //each level has 3 phase
+    [SerializeField] private Sprite sprMapping;
 
     //public Sprite levelSprite;
     [Header("Components")]
@@ -20,6 +21,7 @@ public class MinigameItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI txtDescription;
     [SerializeField] private TextMeshProUGUI txtExperience;
     [SerializeField] private TextMeshProUGUI txtLevelNum;
+    [SerializeField] private Image imgMapping;
     [SerializeField] private Image imgExperienceBar;
     //public Image imgLevel;
 
@@ -32,6 +34,7 @@ public class MinigameItem : MonoBehaviour
         txtLevelName.text = levelName;
         txtDescription.text = levelDescription;
         txtLevelNum.text = "Level " + phaseLevel;
+        imgMapping.sprite = sprMapping;
         txtExperience.text = GameManager.Instance.experience[index].ToString() + " / " + GameManager.Instance.phasesExperience[phaseLevel];
         imgExperienceBar.fillAmount = (float)GameManager.Instance.experience[index] / GameManager.Instance.phasesExperience[phaseLevel];
         //imgLevel.sprite = levelSprite;

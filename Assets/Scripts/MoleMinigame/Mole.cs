@@ -7,6 +7,8 @@ public class Mole : MonoBehaviour
     public bool goOut = false;
 
     [SerializeField] private int expValue;
+    [SerializeField] private GameObject particlesExp;
+
     private float spriteHeight;
     private Vector3 originalPos;
     private Vector3 targetPos;
@@ -59,6 +61,7 @@ public class Mole : MonoBehaviour
         if (collision.gameObject.CompareTag("Hammer"))
         {
             WhackamoleControler.Instance.LevelExperience += expValue;
+            Instantiate(particlesExp, transform.position, Quaternion.identity);
             goOut = false;
         }
     }

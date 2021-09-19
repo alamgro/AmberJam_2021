@@ -21,15 +21,6 @@ public class GameManager : MonoBehaviour
         LoadData();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Debug.LogWarning("Playerprefs deleted!", gameObject);
-            PlayerPrefs.DeleteAll();
-        }
-    }
-
     public bool IsGameOver { get; set; }
 
     //Load Game Data

@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goOut: 0
   expValue: 10
+  particlesExp: {fileID: 6978539247309684205, guid: e70ee827c0bda8a45ba7666eb9fe426c, type: 3}
 --- !u!61 &6661802705263193259
 BoxCollider2D:
   m_ObjectHideFlags: 0
