@@ -15,7 +15,7 @@ public class FishingItem : MonoBehaviour
 
         //Calculate direction based on the current position
         direction = -(transform.position * Vector2.right).normalized;
-        Debug.Log(direction, gameObject);
+        //Debug.Log(direction, gameObject);
         if(direction.x > 0f)
             sprite.flipX = sprite.flipY = true;
 

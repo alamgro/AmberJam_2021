@@ -11,6 +11,7 @@ public class FishingRod : MonoBehaviour
     [SerializeField] private Transform positionBaitLimit; //The limit of the bait in Y position
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Image forceIndicatorUI;
+    [SerializeField] private Transform crosshair;
     [SerializeField] private float idleTime; //The time that it takes to return the bait to the rod
     [SerializeField] private float maxTimePressing; //The maximum time that it takes to fill the force indicator
     private Rigidbody2D rb;
@@ -28,6 +29,7 @@ public class FishingRod : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         positionBait.position = lineRenderer.transform.position; //Set bait to its initial position
+        crosshair.position = positionBait.position;
         lineRenderer.positionCount = 2;
     }
 
@@ -59,6 +61,7 @@ public class FishingRod : MonoBehaviour
                         increaseIndicator = true;
                 }
 
+                MoveCrosshair(forceTimer / maxTimePressing);
                 forceIndicatorUI.fillAmount = forceTimer / maxTimePressing; //Update Force Indicator on UI
             }
             else if (Input.GetKeyUp(KeyCode.Space))
@@ -122,6 +125,16 @@ public class FishingRod : MonoBehaviour
         finalY = finalY < 0.5f ? 0.5f : finalY; //The mínimum distance would be 0.5
 
         return new Vector2(randX, positionBait.position.y + finalY); //Return position where the bait will land
+    }
+
+    private void MoveCrosshair(float _force)
+    {
+        float finalY = (positionBaitLimit.position.y - positionBait.position.y); //Calculate reachable distance
+        finalY *= _force; //Adjust position relative to force applied
+        finalY -= Mathf.Abs(positionBait.position.y);
+        //finalY = finalY < 0.5f ? 0.5f : finalY;
+
+        crosshair.position = new Vector2(transform.position.x, finalY);
     }
 
 }
