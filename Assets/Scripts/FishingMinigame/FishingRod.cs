@@ -12,6 +12,7 @@ public class FishingRod : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Image forceIndicatorUI;
     [SerializeField] private Transform crosshair;
+    [SerializeField] private GameObject partSplashWater;
     [SerializeField] private float idleTime; //The time that it takes to return the bait to the rod
     [SerializeField] private float maxTimePressing; //The maximum time that it takes to fill the force indicator
     private Rigidbody2D rb;
@@ -88,6 +89,8 @@ public class FishingRod : MonoBehaviour
                 positionBait.position = Vector2.MoveTowards(positionBait.position, baitTarget, 15.0f * Time.deltaTime);
 
                 resetBait = positionBait.position == baitTarget;
+                if(resetBait)
+                    Instantiate(partSplashWater, positionBait.position, partSplashWater.transform.rotation);
             }
             else if(positionBait.position != lineRenderer.transform.position)
             {
@@ -97,9 +100,12 @@ public class FishingRod : MonoBehaviour
                     //Return bait to the fishing rod
                     positionBait.position = Vector2.MoveTowards(positionBait.position, lineRenderer.transform.position, 15.0f * Time.deltaTime);
                     baitCollider.enabled = true;
+                    //Instantiate(partSplashWater, positionBait.position, Quaternion.identity);
                 }
                 else
+                {
                     idleTimer += Time.deltaTime;
+                }
             }
             else
             {
