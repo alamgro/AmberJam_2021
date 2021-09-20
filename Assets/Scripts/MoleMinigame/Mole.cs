@@ -16,7 +16,8 @@ public class Mole : MonoBehaviour
 
     void Start()
     {
-        spriteHeight = GetComponent<SpriteRenderer>().sprite.bounds.size.y;
+        //spriteHeight = GetComponent<SpriteRenderer>().sprite.bounds.size.y;
+        spriteHeight = 1.0f;
         originalPos = transform.position;
         targetPos = new Vector2(originalPos.x, originalPos.y + spriteHeight);
         collMole = GetComponent<Collider2D>();
